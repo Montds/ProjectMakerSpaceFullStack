@@ -1,0 +1,21 @@
+name: projectmakerspace
+
+services:
+  api:
+    build:
+      context: ./ProjectMakerSpaceApi
+    container_name: projectmakerspace-api
+    ports:
+      - "3002:8000"
+    environment:
+      DJANGO_DEBUG: "True"
+      DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1"
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./ProjectMakerSpaceWeb
+    container_name: projectmakerspace-web
+    ports:
+      - "3001:3000"
+    restart: unless-stopped
